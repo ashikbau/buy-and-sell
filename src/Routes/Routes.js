@@ -22,6 +22,9 @@ import Signup from "../Pages/Signup";
             {
                 path:'/signup',
                 element:<Signup></Signup>
+            },
+            {
+                path:'/category/:id'
             }
         ]
     }
