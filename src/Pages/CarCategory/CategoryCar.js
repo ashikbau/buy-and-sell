@@ -9,6 +9,7 @@ const CategoryCar = ({card}) => {
             <img src={icon} alt="Movie" />
             </figure>
         <div className="card-body">
+          
            <Link to={`/category/${id}`}> <h2 className="card-title">{category}</h2></Link>
            
             
