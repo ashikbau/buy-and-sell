@@ -16,6 +16,7 @@ const Navbar = () => {
         <li><Link to="/login">LogIn</Link></li>
         <li><Link to="/signup">SignUp</Link></li>
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/categories">Category</Link></li>
         {user?.uid ?
             <>
                 {/* <li><Link to="/dashboard">Dashboard</Link></li> */}
@@ -34,7 +35,7 @@ const Navbar = () => {
               {menuItems}
                     </ul>
                 </div>
-                <a to="/" className="btn btn-ghost normal-case text-xl">Buy-Sell</a>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">Buy-Sell</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CategoryCar from './CategoryCar';
 import caricon from '../../assets/caricon.png'
 import minibus from '../../assets/minibus.png'
@@ -26,14 +26,17 @@ const CarCategory = () => {
             bgClass: 'bg-gradient-to-r from-primary to-secondary'
         },
     ]
+   
+  
+
     return (
         <div>
             <h2 className='text-center text-3xl text-primary font-bold mt-10'>Please Click Your Category</h2>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    carData.map(card => <CategoryCar
-                        key={card.id}
-                        card={card}
+                    carData.map(cat => <CategoryCar
+                        key={cat._id}
+                        cat={cat}
 
                     ></CategoryCar>)
                 }

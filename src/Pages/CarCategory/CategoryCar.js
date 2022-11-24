@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CategoryCar = ({card}) => {
-    const {category,icon,bgClass,id} = card;
+const CategoryCar = ({cat}) => {
+    const {category,icon,bgClass} = cat;
     return (
         <div className={`card mt-8 text-white md:card-side p-6 shadow-xl ${bgClass}`}>
-        <figure>
+        <Link to="/categories">
             <img src={icon} alt="Movie" />
-            </figure>
+            </Link>
         <div className="card-body">
-          
-           <Link to={`/category/${id}`}> 
-           <h2 className="card-title">{category}</h2>
-           </Link>
-           
-            
+          <h2 className="card-title">{category}</h2>
         </div>
     </div>
     );
