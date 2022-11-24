@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -9,7 +10,7 @@ import useToken from '../hooks/useToken';
 const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser,signInWithGoogle } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail);
@@ -30,7 +31,7 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email);
+                        saveUser(data.name, data.email,data.role);
                     })
                     .catch(err => console.log(err));
             })
@@ -40,8 +41,32 @@ const Signup = () => {
             });
     }
 
-    const saveUser = (name, email) =>{
-        const user ={name, email};
+    const handleGoogleSignin = () => {
+        signInWithGoogle().then(result => {
+          console.log(result.user)
+         
+         const user = result.user;
+         const userInfo = {
+            displayName : data.name
+         }
+         updateUser(userInfo)
+         .then(() => {
+             saveUser(data.name, data.email,data.role);
+         })
+         .catch(err => console.log(err));
+ })
+ .catch(error => {
+    console.log(error)
+    setSignUPError(error.message)
+});
+         
+        
+      }
+
+
+
+    const saveUser = (name, email,role) =>{
+        const user ={name, email,role};
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -55,6 +80,8 @@ const Signup = () => {
             setCreatedUserEmail(email);
         })
     }
+    
+    
 
    
 
@@ -122,7 +149,7 @@ const Signup = () => {
                 </form>
                 <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
                 <div className="divider">OR</div>
-                <button  className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignin}  className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
 
             </div>
         </div>

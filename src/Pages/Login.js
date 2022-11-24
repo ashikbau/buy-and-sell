@@ -7,7 +7,7 @@ import useToken from '../hooks/useToken';
 const Login = () => {
     
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn,signInWithGoogle,updateUser } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
@@ -33,6 +33,48 @@ const Login = () => {
                 console.log(error.message)
                 setLoginError(error.message);
             });
+            
+    }
+
+    
+    const handleGoogleSignin = (data) => {
+        signInWithGoogle().then(result => {
+          console.log(result.user)
+         
+         const user = result.user;
+         const userInfo = {
+            displayName : data.name
+         }
+         updateUser(userInfo)
+         .then(() => {
+             saveUser(data.name, data.email,data.role);
+         })
+         .catch(err => console.log(err));
+ })
+ .catch(error => {
+    console.log(error)
+    setLoginError(error.message)
+});
+         
+        
+      }
+
+
+
+    const saveUser = (name, email,role) =>{
+        const user ={name, email,role};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+            setLoginUserEmail(email);
+        })
     }
 
     return (
@@ -102,7 +144,7 @@ const Login = () => {
             </form>
             <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
             <div className="divider">OR</div>
-            <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+            <button onClick={handleGoogleSignin} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
         </div>
     </div>
     );
