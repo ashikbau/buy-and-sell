@@ -3,7 +3,7 @@ import CategoryCar from './CategoryCar';
 import caricon from '../../assets/caricon.png'
 import minibus from '../../assets/minibus.png'
 import bike from '../../assets/bike.png'
-import { Link } from 'react-router-dom';
+
 
 const CarCategory = () => {
     const carData = [
