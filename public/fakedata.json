@@ -2,7 +2,7 @@
     {
       
       "image": "https://i.ibb.co/PWmRg0d/car1.jpg",
-      "cat-id": 1,
+      "catid": 1,
       "name": "Parks Blackburn",
       "brand": "Mercedes",
       "location": "Dhaka",
@@ -15,7 +15,7 @@
     {
       
       "image": "https://i.ibb.co/M9Q5DF1/car2.jpg",
-      "cat-id": 2,
+      "catid": 1,
       "name": "Kathleen Cortez",
       "Brand": "Porshe",
       "location": "Dhaka",
@@ -28,7 +28,7 @@
     {
      
       "image": "https://i.ibb.co/gt3qHgS/minibus1.jpg",
-      "cat-id": 3,
+      "catid": 2,
       "name": "Edith Chang",
       "Brand": "Toyota",
       "location": "Rangpur",
@@ -41,7 +41,7 @@
     {
       
       "image": "https://i.ibb.co/ryQg7X1/car3.jpg",
-      "cat-id": 4,
+      "catid": 1,
       "name": "Carmella Garrett",
       "Brand": "BMW",
       "location": "Chittagong",
@@ -54,7 +54,7 @@
     {
       
       "image": "http://placehold.it/32x32",
-      "cat-id": 5,
+      "catid": 2,
       "name": "Janelle Chandler",
       "Brand": "Iveco Dially",
       "location": "Shylet",
@@ -67,7 +67,7 @@
     {
       
       "image": "https://i.ibb.co/86X9Fmm/minibus3.jpg",
-      "cat-id": 6,
+      "catid": 2,
       "name": "Lydia Vasquez",
       "Brand": "Nishan",
       "location": "Borisal",
@@ -80,7 +80,7 @@
     {
       
       "image": "https://i.ibb.co/GJTHZs6/bike1.jpg",
-      "cat-id": 7,
+      "catid": 3,
       "name": "Bryan Lamb",
       "Brand": "Kawasaki",
       "location": "Rajshahi",
@@ -93,7 +93,7 @@
     {
       
       "image": "https://i.ibb.co/R9X6wzv/bike2.jpg",
-      "cat-id": 8,
+      "catid": 3,
       "name": "Branch Ashley",
       "Brand": "Honda",
       "location": "Gazipur",

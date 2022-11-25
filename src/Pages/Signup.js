@@ -67,6 +67,7 @@ const Signup = () => {
 
     const saveUser = (name, email,role) =>{
         const user ={name, email,role};
+        console.log(user)
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -115,6 +116,17 @@ const Signup = () => {
                         
                         />
                         <p className='text-2xl'>Seller</p>
+
+                    </div>
+                    <div className='flex items-center space-x-2'>
+                        <input 
+                        type="radio"
+                        value='admin'
+                        className='w-6 h-6'
+                        {...register('role',{required:true})}
+                        
+                        />
+                        <p className='text-2xl'>Admin</p>
 
                     </div>
 

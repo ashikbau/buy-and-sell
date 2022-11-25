@@ -108,6 +108,17 @@ const Login = () => {
                         <p className='text-2xl'>Seller</p>
 
                     </div>
+                    <div className='flex items-center space-x-2'>
+                        <input 
+                        type="radio"
+                        value='seller'
+                        className='w-6 h-6'
+                        {...register('role',{required:true})}
+                        
+                        />
+                        <p className='text-2xl'>Admin</p>
+
+                    </div>
 
                 </div>
                 <div className="form-control w-full max-w-xs">
