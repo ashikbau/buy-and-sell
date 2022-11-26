@@ -24,6 +24,7 @@ const AddProducts = () => {
        const postedDate = form.postedDate.value;
        const status = form.status.value;
        const category = form.category.value;
+       const serial = form.serial.value;
        const description = form.description.value;
        const image = form.image.files[0];
        let catId
@@ -59,6 +60,7 @@ const AddProducts = () => {
                    category,
                    description,
                    sellingStatus:'avaialable',
+                   serial:serial,
                    sellerInfo:{
                        name,
                        email

@@ -25,3 +25,13 @@ export const addVehicle= async (vehicle)=>{
     return data
 
 }
+
+// get bookings by email
+
+export  const getBookingByEmail= async (email)=>{
+
+    const res= await fetch(`http://localhost:5000/bookings?email=${email}`)
+    const data= await res.json()
+    return data
+
+}

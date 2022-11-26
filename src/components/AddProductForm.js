@@ -11,6 +11,7 @@ const AddProductForm = ({handleSubmit,name,email}) => {
 
         <input disabled  defaultValue={name}    name="name" type="text"  placeholder="Your Name" className="input w-full input-bordered" />
         <input disabled  defaultValue={email}  name="email" type="email"  placeholder="Email Address" className="input w-full input-bordered" />
+        <input   required  name="serial" type="text"  placeholder="Car Serial no" className="input w-full input-bordered" />
         <input name="resalePrice" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
       <input name="originalPrice" type="text" placeholder="Price" className="input w-full input-bordered" />
         <input name="location" type="text" placeholder="Your Location" className="input w-full input-bordered" />

@@ -3,6 +3,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import Category from "../Pages/Category/Category";
 import AddProducts from "../Pages/Dashboard/AddProducts";
+import MyBookings from "../Pages/Dashboard/MyBookings";
 
 import MyProducts from "../Pages/Dashboard/MyProducts";
 import Home from "../Pages/Home/Home";
@@ -52,6 +53,11 @@ import Signup from "../Pages/Signup";
             {
                 path:'my-products',
                 element:<MyProducts></MyProducts>
+            },
+
+            {
+                path:'my-bookings',
+                element:<MyBookings></MyBookings>
             }
         ]
     }

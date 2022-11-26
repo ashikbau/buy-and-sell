@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ cate }) => {
+    
     console.log(cate)
     const { user } = useContext(AuthContext);
 
@@ -15,6 +17,8 @@ const BookingModal = ({ cate }) => {
         const phone = form.location.value;
         const sellername = form.sellername.value;
         const resalePrice = form.resalePrice.value;
+        const serial = form.serial.value;
+        
 
 
         console.log(name,email,location,phone,sellername)
@@ -26,7 +30,8 @@ const BookingModal = ({ cate }) => {
             buyerEmail: email,
             meetingLocation: location,
             sellername,
-            price:resalePrice
+            price:resalePrice,
+            serial
 
 
         }
@@ -61,7 +66,7 @@ const BookingModal = ({ cate }) => {
 
     return (
         <>
-            <label htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
+        <label htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
@@ -71,6 +76,8 @@ const BookingModal = ({ cate }) => {
                         <input disabled name="name" type="text" defaultValue={user?.displayName} placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
                         <input required name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
+                        <input disabled defaultValue={cate?.serial} name="serial" type="text" placeholder="Serial" className="input w-full input-bordered" />
+                       
                         <input required name='location' type="text" placeholder='Meeting Location' className="input w-full input-bordered " />
                         <input disabled name='resalePrice' type="text" defaultValue={cate?.resalePrice} placeholder='ReSell Price' className="input w-full input-bordered " />
                         <input disabled name='sellername' type="text" defaultValue={cate?.sellerInfo

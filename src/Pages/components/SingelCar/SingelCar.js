@@ -4,7 +4,7 @@ import BookingModal from '../../Category/BookingModal/BookingModal';
 
 const SingelCar = ({cate}) => {
    
-        const {category,image,location,resalePrice,originalPrice,usedYears,postedDate
+        const {category,image,location,resalePrice,originalPrice,usedYears,postedDate,serial
         } = cate;
       
         return (
@@ -29,6 +29,7 @@ const SingelCar = ({cate}) => {
         <p> Resell Price:{resalePrice}</p>
         <p> Original Price : {originalPrice}</p>
         <p> Used Time : {usedYears}</p>
+        <p> Serial No : {serial}</p>
          
         </div>
         
