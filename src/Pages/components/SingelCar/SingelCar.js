@@ -3,6 +3,8 @@ import BookingModal from '../../Category/BookingModal/BookingModal';
 
 
 const SingelCar = ({cate}) => {
+
+  console.log(cate)
    
         const {category,image,location,resalePrice,originalPrice,usedYears,postedDate,serial
         } = cate;
