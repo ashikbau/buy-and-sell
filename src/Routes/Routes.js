@@ -34,7 +34,8 @@ import Signup from "../Pages/Signup";
                 loader:  ({ params }) => {
                     return fetch(`http://localhost:5000/categories/${params.id}`);
                   },
-            }
+            },
+            
             
         ]
     },

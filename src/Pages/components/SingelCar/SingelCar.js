@@ -4,7 +4,7 @@ import BookingModal from '../../Category/BookingModal/BookingModal';
 
 const SingelCar = ({cate}) => {
    
-        const {category,image,name,location,resalePrice,originalPrice,usedYears,postedDate
+        const {category,image,location,resalePrice,originalPrice,usedYears,postedDate
         } = cate;
       
         return (
@@ -18,7 +18,7 @@ const SingelCar = ({cate}) => {
       <h2 className="card-title">{category}</h2>
       
         <div>
-        <p>Seller Name :{name}</p>
+        <p>Seller Name :{cate.sellerInfo.name}</p>
         <p>Location: {location}</p>
         <p> Posted Date :{postedDate
     }</p>
@@ -34,7 +34,7 @@ const SingelCar = ({cate}) => {
         
       </div>
       {/* <button htmlFor="booking-modal" className="btn btn-primary">Book Now</button> */}
-     <BookingModal></BookingModal>
+     <BookingModal cate={cate}></BookingModal >
     </div>
     );
 };

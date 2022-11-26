@@ -18,7 +18,7 @@ const AddProductForm = ({handleSubmit,name,email}) => {
         <input name="postedDate" type="date" placeholder="Purchage Year" className="input w-full input-bordered" />
         <input name='image' type="file" className="file-input w-full max-w-xs" />
        
-        <select name="status"  className="select w-full input-bordered">
+        <select required name="status"  className="select w-full input-bordered">
 
 
             <option disabled selected>Choose Conditions</option>
@@ -27,7 +27,7 @@ const AddProductForm = ({handleSubmit,name,email}) => {
             <option>Fair</option>
            
         </select>
-        <select name='category' className="select w-full input-bordered">
+        <select required name='category' className="select w-full input-bordered">
             <option disabled selected>Choose Category</option>
             <option>Private Car</option>
             <option>minibus</option>
