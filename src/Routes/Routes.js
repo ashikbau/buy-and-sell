@@ -14,6 +14,7 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import Signup from "../Pages/Signup";
 import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
  export const router = createBrowserRouter([
     {
@@ -74,6 +75,11 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
             {
                 path:'all-users',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path:'/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     }

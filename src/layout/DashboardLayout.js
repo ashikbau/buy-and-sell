@@ -25,16 +25,7 @@ useEffect(()=>{
 }, [user?.email])
 console.log(role)
 
-//  {name:,
-//     pic:
-//     price:,
-//   category:
-//     seller:{
-//         sellerName:,
-//         email:
-//     }
-
-//  }
+ 
 
  
 

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../Shared/ConfirmationModal/ConfirmationModal';
+import { Link } from 'react-router-dom';
 
 
 const MyBookings = () => {
@@ -71,6 +72,7 @@ const MyBookings = () => {
                             <th>Meeting Location</th>
                             <th>Price</th>
                             <th>Cancel</th>
+                            <th>Pay</th>
 
                         </tr>
                     </thead>
@@ -83,10 +85,25 @@ const MyBookings = () => {
                                 <td>{booking?.sellername}</td>
                                 <td>{booking?.meetingLocation}</td>
                                 <td>{booking?.price}</td>
+
                                 <td>
 
                                     <label onClick={() => setDeletingBooking(booking)} htmlFor="delete-modal" className="btn btn-sm btn-warning">Delete</label>
+                                    
                                 </td>
+                                <td>
+
+                                    {
+                                        booking.price && !booking.paid &&
+                                        <Link to={`/dashboard/payment/${booking._id}`}><button className="btn btn-sm btn-primary">Pay Now</button></Link>
+                                         
+                                    }
+                                    {
+                                       booking.price && booking.paid &&
+                                       <span className='text-primary'>Paid</span> 
+                                    }
+                                </td>
+
                             </tr>)
 
 
