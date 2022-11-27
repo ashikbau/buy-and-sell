@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const AdminMenu = () => {
+    const {user}= useContext(AuthContext);
+    console.log(user)
     return (
         <div>
-             <h1>I am Admin</h1>
+             <h1>I am Admin : {user?.displayName}</h1>
+             
 
-            <Link to='/alluser' > all User</Link>
-            <Link to='/allbuyer' > all Buyer</Link>
+            <Link to='all-buyers' > all Buyers</Link>
+            <br />
+            <Link to='all-sellers' > all Sellers</Link>
+            <br />
+            <Link to='all-users' > all Users</Link>
             
         </div>
     );

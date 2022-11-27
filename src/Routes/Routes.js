@@ -3,6 +3,8 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import Category from "../Pages/Category/Category";
 import AddProducts from "../Pages/Dashboard/AddProducts";
+import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
+
 import MyBookings from "../Pages/Dashboard/MyBookings";
 
 import MyProducts from "../Pages/Dashboard/MyProducts";
@@ -10,6 +12,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import Signup from "../Pages/Signup";
+import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
  export const router = createBrowserRouter([
     {
@@ -58,6 +62,18 @@ import Signup from "../Pages/Signup";
             {
                 path:'my-bookings',
                 element:<MyBookings></MyBookings>
+            },
+            {
+                path:'all-buyers',
+                element:<AllBuyers></AllBuyers>
+            },
+            {
+                path:'all-sellers',
+                element: <AllSeller></AllSeller>
+            },
+            {
+                path:'all-users',
+                element: <AllUsers></AllUsers>
             }
         ]
     }
