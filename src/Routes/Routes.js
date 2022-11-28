@@ -15,6 +15,9 @@ import Signup from "../Pages/Signup";
 import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import Reviews from "../Pages/Reviews/Reviews";
+import Blog from "../Pages/Blog/Blog";
+
 
  export const router = createBrowserRouter([
     {
@@ -33,6 +36,11 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
             {
                 path:'/signup',
                 element:<Signup></Signup>
+
+            },
+            { path:'/blog',
+            element :<Blog></Blog>
+
             },
             {
                 path:'/categories/:id',
