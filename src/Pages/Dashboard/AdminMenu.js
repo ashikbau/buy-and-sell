@@ -10,10 +10,7 @@ const AdminMenu = () => {
              <h1>I am Admin : {user?.displayName}</h1>
              
 
-            <Link to='all-buyers' > all Buyers</Link>
-            <br />
-            <Link to='all-sellers' > all Sellers</Link>
-            <br />
+            
             <Link to='all-users' > all Users</Link>
             
         </div>

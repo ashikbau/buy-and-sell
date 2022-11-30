@@ -8,6 +8,7 @@ const Category = () => {
 
 
   const vehicles  =useLoaderData()
+  console.log(vehicles)
    
     return (
        

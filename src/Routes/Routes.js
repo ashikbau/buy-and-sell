@@ -14,9 +14,13 @@ import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
 import Signup from "../Pages/Signup";
 import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import Payment from "../Pages/Dashboard/Payment/Payment";
-import Reviews from "../Pages/Reviews/Reviews";
-import Blog from "../Pages/Blog/Blog";
+
+import BecomeASeller from "../Pages/Dashboard/AllBuyers/BecomeASeller";
+import BecomeABuyer from "../Pages/Dashboard/AllBuyers/BecomeABuyer";
+
+import RecentBlogs from "../Pages/RecentBlogs/RecentBlogs";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Payment from "../Pages/Payment/Payment";
 
 
  export const router = createBrowserRouter([
@@ -38,13 +42,14 @@ import Blog from "../Pages/Blog/Blog";
                 element:<Signup></Signup>
 
             },
-            { path:'/blog',
-            element :<Blog></Blog>
+
+            {path: "/blogs",
+            element:<RecentBlogs></RecentBlogs>
 
             },
             {
                 path:'/categories/:id',
-                element:<Category></Category>,
+                element:<PrivateRoute><Category></Category></PrivateRoute>,
                 loader:  ({ params }) => {
                     return fetch(`http://localhost:5000/categories/${params.id}`);
                   },
@@ -56,7 +61,7 @@ import Blog from "../Pages/Blog/Blog";
 
     {
         path:'/dashboard',
-        element:<DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
@@ -84,9 +89,20 @@ import Blog from "../Pages/Blog/Blog";
                 path:'all-users',
                 element: <AllUsers></AllUsers>
             },
+
+
+            {
+                path:'become-seller',
+                element: <BecomeASeller></BecomeASeller>
+            },
+
+            {
+                path:'become-buyer',
+                element: <BecomeABuyer></BecomeABuyer>
+            },
             {
                 path:'/dashboard/payment/:id',
-                element: <Payment></Payment>,
+                element:<Payment></Payment>,
                 loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]

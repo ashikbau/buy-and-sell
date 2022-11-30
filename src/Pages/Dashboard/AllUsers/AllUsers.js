@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { acceptRole } from '../../../api/user';
 import Spinner from '../../../components/Spinner';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
@@ -18,11 +19,12 @@ const AllUsers = () => {
         queryFn: async() =>{
             const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
+            console.log(data)
             return data;
         }
     });
 
-    console.log(users)
+   
 
 
     const handleDeleteUsers = user=> {
@@ -44,6 +46,44 @@ const AllUsers = () => {
 
     if(isLoading){
         <Spinner></Spinner>
+    }
+
+    const handleUpdate=(data)=>{
+        if(data.role==='sellerRequested'){
+
+            const info={
+                email:data?.email,
+                name:data?.name,
+                role:'seller'
+
+            }
+
+            acceptRole(info)
+            .then(data=>{
+                refetch()
+                console.log(data)})
+            .catch(err=>console.log(err.message))
+
+        }
+        else{
+            const info={
+                email:data?.email,
+                name:data?.name,
+                role:'buyer'
+
+            }
+
+            acceptRole(info)
+            .then(data=>{
+                refetch()
+                console.log(data)})
+            .catch(err=>console.log(err.message))
+
+        }
+        
+       
+        
+        
     }
     
     return (
@@ -69,9 +109,9 @@ const AllUsers = () => {
             <th>{i+1}</th>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            <td>{user?.role}
+            <td>
             
-           
+           <span className='text-primary fw-blod' onClick={()=>handleUpdate(user)} >{user?.role}</span>
             
             
             </td>

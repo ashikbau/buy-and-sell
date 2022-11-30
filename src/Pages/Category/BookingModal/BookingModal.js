@@ -1,67 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { updatedProduct } from '../../../api/auth';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
-const BookingModal = ({ cate }) => {
-    
-    console.log(cate)
+const BookingModal = ({ cate,handleBooking,myDescription,setMyDescription }) => {
     const { user } = useContext(AuthContext);
+  
 
-    const handleBooking = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const location = form.location.value;
-        const phone = form.location.value;
-        const sellername = form.sellername.value;
-        const resalePrice = form.resalePrice.value;
-        const serial = form.serial.value;
-        
-
-
-        console.log(name,email,location,phone,sellername)
-
-
-
-        const bookingData = {
-            buyerName: name,
-            buyerEmail: email,
-            meetingLocation: location,
-            sellername,
-            price:resalePrice,
-            serial
-
-
-        }
-
-
-        fetch('http://localhost:5000/bookings', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(bookingData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
-                    
-                    toast.success('Booking confirmed');
-                   
-                }
-                else{
-                    toast.error(data.message);
-                }
-            })
-
-    }
-
+   console.log('cate',cate)
+//    const{catId,category,description,image,location,originalPrice,
+// postedDate,resalePrice,sellerInfo,sellingStatus,serial,status,usedYears
+// }=cate
+ 
+    
    
-
-
 
 
     return (
@@ -82,11 +35,13 @@ const BookingModal = ({ cate }) => {
                         <input disabled name='resalePrice' type="text" defaultValue={cate?.resalePrice} placeholder='ReSell Price' className="input w-full input-bordered " />
                         <input disabled name='sellername' type="text" defaultValue={cate?.sellerInfo
                         ?.name} placeholder='Seller Name' className="input w-full input-bordered " />
-                        <input type="checkbox" checked className="checkbox checkbox-primary" />
-
-
-
-
+                        <textarea  
+                        value={myDescription}
+                        onChange={(e)=>setMyDescription(e.target.value)} 
+                          name='myDescription' className="textarea textarea-primary" 
+                        placeholder=""></textarea>
+                        
+                        <input  type="checkbox"  className="checkbox checkbox-primary" />
 
 
 

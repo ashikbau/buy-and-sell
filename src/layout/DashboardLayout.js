@@ -7,29 +7,45 @@ import BuyerMenu from '../Pages/Dashboard/BuyerMenu';
 import SellerMenu from '../Pages/Dashboard/SellerMenu';
 import Navbar from '../Pages/Shared/Navbar';
 import Spinner from '../../src/components/Spinner'
+import UserMenu from '../Pages/Dashboard/AllBuyers/UserMenu';
+import { getRole } from '../api/user';
 
 const DashboardLayout = () => {
+
     const{ user} = useContext(AuthContext)
-    const [role,setRole] = useState(null);
-    const [loading,setLoading] = useState(true);
-    // console.log(user?.email)
+   
+
+     const [role,setRole]=useState(null)
+   const[loading,setLoading]  =useState(true)
 
 
-useEffect(()=>{
-    fetch(`http://localhost:5000/users/${user?.email}`)
-    .then(res=> res.json())
-    .then(data=>setRole(data.role))
-    .catch(err=>console.log(err.message))
+   useEffect(()=>{
+    getRole(user?.email)
+    .then(data=>{
+        console.log(data)
+        setLoading(false)
+        setRole(data.role)
+    })
+    .catch(err=>{
+        setLoading(false)
+        console.log(err.message)
+
+    })
+
+   },[user?.email])
 
 
-}, [user?.email])
-console.log(role)
+//   
 
- 
+    //   console.log(role)
 
- 
+
 
     let menu=null;
+    if(role==null){
+        menu=<UserMenu></UserMenu>
+
+    }
 
     if(role==='admin') 
     menu=  <AdminMenu></AdminMenu>
@@ -48,22 +64,27 @@ console.log(role)
                 <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side  bg-red-500 ">
+                
+                  
+                    <div className="drawer-side  bg-red-500 ">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay  bg-primary "></label>
                     <ul className="menu p-4 w-80 text-base-content">
+               
+                      
+                         {/* <li><Link to="/dashboard/allusers">All Users</Link></li>
+                        <li><Link to="/dashboard/allseller">All Seller</Link></li>  */}
 
                         {
-                            menu
+                           loading?<Spinner></Spinner> :  menu
                         }
-                      
-                        {/* <li><Link to="/dashboard/allusers">All Users</Link></li>
-                        <li><Link to="/dashboard/allseller">All Seller</Link></li> */}
+                       
 
                       
 
                     </ul>
 
                 </div>
+                
             </div>
   
         </div>

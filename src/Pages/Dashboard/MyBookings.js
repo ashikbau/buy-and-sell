@@ -4,12 +4,17 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../components/Spinner';
 import { AuthContext } from '../../contexts/AuthProvider';
 import ConfirmationModal from '../Shared/ConfirmationModal/ConfirmationModal';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const MyBookings = () => {
     const [deletingBooking, setDeletingBooking] = useState(null)
    const { user } = useContext(AuthContext);
+   const [loading,setLoading] = useState(true)
+   const navigate = useNavigate()
+   const location = useLocation()
+   const from = location.state?.from?.pathname || '/'
+ 
    
    const closeModal = () => {
         setDeletingBooking(null);
@@ -25,13 +30,18 @@ const MyBookings = () => {
                     }
                 });
                 const data = await res.json();
+                console.log(data)
+                setLoading(false)
+                
                 return data;
             }
             catch (error) {
+                setLoading(false)
 
             }
         }
     });
+    console.log(bookings)
     
 
 
@@ -47,6 +57,8 @@ const MyBookings = () => {
             if(data.deletedCount > 0){
                refetch()
                 toast.success(`Bookings ${booking.name} deleted successfully`)
+
+                navigate(from, { replace: true })
             }
         })
     }
@@ -78,13 +90,13 @@ const MyBookings = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings &&
-                            bookings.map(booking => <tr key={booking._id}>
+                        loading? <Spinner></Spinner> : 
+                            bookings?.map(booking => <tr key={booking._id}>
                                 <th></th>
                                 <td>{booking?.serial}</td>
                                 <td>{booking?.sellername}</td>
                                 <td>{booking?.meetingLocation}</td>
-                                <td>{booking?.price}</td>
+                                <td>{booking?.price} </td>
 
                                 <td>
 

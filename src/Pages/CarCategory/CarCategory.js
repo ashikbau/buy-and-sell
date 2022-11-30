@@ -35,7 +35,7 @@ const CarCategory = () => {
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     carData.map(cat => <CategoryCar
-                        key={cat._id}
+                        key={cat.id}
                         cat={cat}
 
                     ></CategoryCar>)

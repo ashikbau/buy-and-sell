@@ -12,6 +12,7 @@ const MyProducts = () => {
    const{user} =useContext(AuthContext)
 //  const[vehicles,setVehicles]  =useState([])
 //  const[loading,setLoading]  =useState(true)
+const [loading,setLoading] = useState(true)
 const closeModal = () => {
   setDeletingVechiles(null);
 }
@@ -40,7 +41,7 @@ const handleDeleteMyProducts = vehicle=> {
   fetch(`http://localhost:5000/category/${vehicle._id}`, {
       method: 'DELETE', 
       headers: {
-          authorization: `bearer ${localStorage.getItem('useToken')}`
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
       }
   })
   .then(res => res.json())
@@ -51,6 +52,30 @@ const handleDeleteMyProducts = vehicle=> {
       }
   })
 }
+
+
+const { data:bookings=[] } = useQuery({
+  queryKey: ['bookings'],
+  queryFn: async () => {
+      try {
+          const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+              headers: {
+                  authorization: `bearer ${localStorage.getItem('accessToken')}`
+              }
+          });
+          const data = await res.json();
+          setLoading(false)
+          
+          return data;
+      }
+      catch (error) {
+          setLoading(false)
+
+      }
+  }
+});
+console.log(bookings)
+
 
  if(isLoading){
   <Spinner></Spinner>
