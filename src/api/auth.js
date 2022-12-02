@@ -20,21 +20,22 @@ export const setAuthToken = user => {
        localStorage.setItem('accessToken', data.accessToken);
         
   
-        console.log(data.token)
+        console.log('accessToken',data.accessToken)
         
       })
   }
 
 
-  export const updatedProduct = async (product,_id) => {
-    console.log('id',_id)
+  export const updatedProduct = async (product,id) => {
+    // console.log('id',_id)
    
   
-    //   Save user in db & get token
- const res= await   fetch(`http://localhost:5000/categories/${_id}`, {
+    
+ const res= await   fetch(`http://localhost:5000/categories/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
+       
       },
       body: JSON.stringify(product),
     })

@@ -28,7 +28,7 @@ const DashboardLayout = () => {
     })
     .catch(err=>{
         setLoading(false)
-        console.log(err.message)
+        console.log(err?.message)
 
     })
 

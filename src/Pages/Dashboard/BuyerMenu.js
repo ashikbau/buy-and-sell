@@ -10,6 +10,8 @@ const BuyerMenu = () => {
             
             <h1>Buyer Name : {user?.displayName}</h1>
            <Link to='my-bookings' > My Bookings</Link>
+           <br />
+           {/* <Link to='my-wishlist' > My  WishList</Link> */}
           
         
         </div>

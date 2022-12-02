@@ -8,6 +8,7 @@ const SellerMenu = () => {
            <nav className='flex flex-col' >
            <Link     to='add-products' > Add Products</Link>
             <Link to='my-products' > My Products</Link>
+            <Link to='my-advertise' > My Advertise</Link>
            </nav>
            
         </div>

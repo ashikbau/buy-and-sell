@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 
 const CheckoutForm = ({ booking }) => {
+    
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
@@ -10,7 +11,10 @@ const CheckoutForm = ({ booking }) => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const{price,email,_id}= booking;
+    const{resalePrice,email,_id}= booking;
+    console.log(resalePrice)
+    
+
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -18,13 +22,13 @@ const CheckoutForm = ({ booking }) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({ price }),
+            body: JSON.stringify({resalePrice }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
-    }, [price]);
+    }, [resalePrice]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -73,7 +77,7 @@ const CheckoutForm = ({ booking }) => {
             console.log('card info', card);
             // store payment info in the database
             const payment = {
-                price,
+                resalePrice,
                 transactionId: paymentIntent.id,
                 email,
                 bookingId: _id
@@ -82,7 +86,7 @@ const CheckoutForm = ({ booking }) => {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(payment)
             })

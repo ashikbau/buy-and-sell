@@ -16,6 +16,8 @@ react useform,headlessui,Daisyui
 
 I tried to think little and then execute the things what i think.
 I am tried to improve my self through understanding the concepts
+I also used to react for this project.
+I used Mongodb for this project.
 
 
 

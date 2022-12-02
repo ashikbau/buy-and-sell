@@ -2,7 +2,30 @@ export const addVehicle= async (vehicle)=>{
     const res= await fetch('http://localhost:5000/category',{
         method:'POST',
         headers:{
-            'content-type':'application/json'
+            'content-type':'application/json',
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+
+        },
+        body:JSON.stringify(vehicle)
+    })
+    const data= await res.json()
+    return data
+
+
+
+
+}
+
+// add addAdvertiseCar
+
+
+
+export const addAddvertiseCar= async (vehicle)=>{
+    const res= await fetch('http://localhost:5000/advertises',{
+        method:'POST',
+        headers:{
+            'content-type':'application/json',
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
 
         },
         body:JSON.stringify(vehicle)

@@ -21,6 +21,8 @@ import BecomeABuyer from "../Pages/Dashboard/AllBuyers/BecomeABuyer";
 import RecentBlogs from "../Pages/RecentBlogs/RecentBlogs";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Payment from "../Pages/Payment/Payment";
+import MyWishList from "../Pages/Dashboard/MyWishList";
+import AdvertiseProducts from "../Pages/Dashboard/AdvertiseProducts";
 
 
  export const router = createBrowserRouter([
@@ -68,6 +70,10 @@ import Payment from "../Pages/Payment/Payment";
                 path:'add-products',
                 element:<AddProducts></AddProducts>
             },
+            { path:'my-advertise',
+            element: <AdvertiseProducts></AdvertiseProducts>
+
+            },
             {
                 path:'my-products',
                 element:<MyProducts></MyProducts>
@@ -77,6 +83,9 @@ import Payment from "../Pages/Payment/Payment";
                 path:'my-bookings',
                 element:<MyBookings></MyBookings>
             },
+            
+
+           
             {
                 path:'all-buyers',
                 element:<AllBuyers></AllBuyers>
@@ -103,7 +112,7 @@ import Payment from "../Pages/Payment/Payment";
             {
                 path:'/dashboard/payment/:id',
                 element:<Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                // loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     }

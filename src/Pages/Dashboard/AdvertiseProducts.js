@@ -1,27 +1,28 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { getImageUrl } from '../../api/getImageUrl';
-import { addVehicle } from '../../api/vehicles';
-import AddProductFrom from '../../Pages/components/SingelCar/AddProductForm'
+import { addAddvertiseCar} from '../../api/vehicles';
 import { AuthContext } from '../../contexts/AuthProvider';
-import AddProductForm from '../../Pages/components/SingelCar/AddProductForm';
+import AdvertiseProductsForm from '../components/AdvertiseProductsForm';
 
-const AddProducts = () => {
-  const[url,setUrl] = useState(null)
+const AdvertiseProducts = () => {
+    const[url,setUrl] = useState(null)
 
 
 
- const  {user} =useContext(AuthContext)
+ const  {user} = useContext(AuthContext)
 //  
-    const handleSubmit=(e)=>{
-        e.preventDefault()
+    const handleSubmit=(event)=>{
+       event.preventDefault();
 
-        const form = e.target;
+      
+
+        const form = event.target;
        const name = form.name.value;
        const email = form.email.value;
        const originalPrice = form.originalPrice.value;
        const resalePrice = form.resalePrice.value;
-       const location = form.location.value;
+      
        const usedYears = form.usedYears.value;
        const postedDate = form.postedDate.value;
        const status = form.status.value;
@@ -46,6 +47,7 @@ const AddProducts = () => {
              
        getImageUrl(image)
        .then(data=>{
+        console.log('hi from advertise page')
         
         setUrl(data)
 
@@ -53,7 +55,7 @@ const AddProducts = () => {
 
             originalPrice,
                    resalePrice,
-                   location,
+                 
                    usedYears,
                    postedDate,
                    status,
@@ -70,7 +72,9 @@ const AddProducts = () => {
            
                   }
 
-                  addVehicle(vehicle)
+               
+
+                  addAddvertiseCar(vehicle)
                   .then(data=>console.log(data))
                   .catch(err=>console.log(err.message))
      
@@ -81,16 +85,16 @@ const AddProducts = () => {
 
        }
 
-
+ 
+    
+    
     return (
+        <div>
+            <h2>This is advertise products</h2>
+            <AdvertiseProductsForm handleSubmit={ handleSubmit} name={user?.displayName} email={user?.email}></AdvertiseProductsForm>
 
-        <div className='w-1/2 h-[600px] mx-auto'>
-            <h1>Add Products</h1>
-            <AddProductForm handleSubmit={handleSubmit}  name={user?.displayName} email={user?.email}  >
-
-            </AddProductForm>
         </div>
     );
 };
 
-export default AddProducts;
+export default AdvertiseProducts;

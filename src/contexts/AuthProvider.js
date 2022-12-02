@@ -22,7 +22,7 @@ const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState('null')
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   console.log(user)
   //1. Create User
@@ -32,10 +32,12 @@ const AuthProvider = ({ children }) => {
   }
 
   //   2. Update Name
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name, photo,email) => {
     setLoading(true)
     return updateProfile(auth.currentUser, {
       displayName: name,
+      email : email,
+
       photoURL: photo,
     })
   }
@@ -55,7 +57,7 @@ const AuthProvider = ({ children }) => {
   // 5. Logout
   const logout = () => {
     setLoading(true)
-    localStorage.removeItem('accessToken')
+    // localStorage.removeItem('accessToken')
     return signOut(auth)
   }
 
